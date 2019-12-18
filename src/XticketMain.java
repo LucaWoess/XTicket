@@ -6,14 +6,15 @@ public class XticketMain
 	{
 		Scanner Sc = new Scanner(System.in);
 		PaP2 pap2 = new PaP2();
-		String Veranstaltungsart = Sc.next();
+		System.out.println("Hallo");
 		System.out.println("Welche Art der Veranstaltug möchten sie besuchen(Konzert,Theater,Sport): ");
+		String Veranstaltungsart = Sc.nextLine();
 		if(Veranstaltungsart.equals("Konzert"))
 		{
-			String Veranstaltungsort = Sc.next();
 			System.out.println("Wo möchten Sie das Konzert besuchen(Innsbruck/München): ");
-			String Ticketart = Sc.next();
+			String Veranstaltungsort = Sc.nextLine();
 			System.out.println("Was für eine Art von Ticket möchten Sie erwerben(Stehplatz,Sitzplatz,VIP): ");
+			String Ticketart = Sc.nextLine();
 			pap2.berechneTicketpreis(Veranstaltungsort, 40, Ticketart);
 			pap2.ausgabe(Veranstaltungsort, Ticketart);
 		}
