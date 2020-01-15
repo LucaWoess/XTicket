@@ -7,13 +7,33 @@ public class XticketMain
 		Scanner Sc = new Scanner(System.in);
 		PaP2 pap2 = new PaP2();
 		System.out.println("Hallo");
-		System.out.println("Welche Art der Veranstaltug möchten sie besuchen(Konzert,Theater,Sport): ");
+		System.out.print("Welche Art der Veranstaltug möchten sie besuchen(Konzert,Theater,Sport): ");
 		String Veranstaltungsart = Sc.nextLine();
 		if(Veranstaltungsart.equals("Konzert"))
 		{
-			System.out.println("Wo möchten Sie das Konzert besuchen(Innsbruck/München): ");
+			System.out.print("Wo möchten Sie das Konzert besuchen(Innsbruck/München): ");
 			String Veranstaltungsort = Sc.nextLine();
-			System.out.println("Was für eine Art von Ticket möchten Sie erwerben(Stehplatz,Sitzplatz,VIP): ");
+			System.out.print("Was für eine Art von Ticket möchten Sie erwerben(Stehplatz,Sitzplatz,VIP): ");
+			String Ticketart = Sc.nextLine();
+			pap2.berechneTicketpreis(Veranstaltungsort, 40, Ticketart);
+			pap2.ausgabe(Veranstaltungsort, Ticketart);
+		}
+		
+		if(Veranstaltungsart.equals("Theater"))
+		{
+			System.out.print("Wo möchten Sie das Konzert besuchen(Innsbruck/München): ");
+			String Veranstaltungsort = Sc.nextLine();
+			System.out.print("Was für eine Art von Ticket möchten Sie erwerben(Stehplatz,Sitzplatz,VIP): ");
+			String Ticketart = Sc.nextLine();
+			pap2.berechneTicketpreis(Veranstaltungsort, 40, Ticketart);
+			pap2.ausgabe(Veranstaltungsort, Ticketart);
+		}
+		
+		if(Veranstaltungsart.equals("Sport"))
+		{
+			System.out.print("Wo möchten Sie das Konzert besuchen(Innsbruck/München): ");
+			String Veranstaltungsort = Sc.nextLine();
+			System.out.print("Was für eine Art von Ticket möchten Sie erwerben(Sitzplatz,VIP): ");
 			String Ticketart = Sc.nextLine();
 			pap2.berechneTicketpreis(Veranstaltungsort, 40, Ticketart);
 			pap2.ausgabe(Veranstaltungsort, Ticketart);
@@ -23,12 +43,33 @@ public class XticketMain
 
 abstract class Tickets
 {
-	abstract void berechneTicketpreis(String Veranstaltungsort,int Basispreis,String Ticketart); //Ticketart ... Steh-/Sitzplatz/VIP
+	String veranstaltungsort;
+	String veranstaltungsart;
+	String veranstaltungsname;
+	String ticketart;
+	int basispreis;
+	int ticketpreis;
+	
+	abstract void berechneTicketpreis();
+	abstract void abfrage();
+	public ausgabe()
+	{
+		String ausgabe;
+		ausgabe = "Veranstaltungsart: "+veranstaltungsart+"\n";
+		ausgabe += "Veranstaltungsname: "+veranstaltungsname+"\n";
+		ausgabe += "Veranstaltungsort: "+veranstaltungsort+"\n";
+		ausgabe += "ticketart: "+ticketart+"\n";
+		ausgabe += "Ticketpreis: "+ticketpreis+"\n";
+		System.out.println(ausgabe);
+	}
 }
 
 abstract class Konzert extends Tickets
 {
-	//abstract void berechneTicketpreis();
+	public void abfrage()
+	{
+		System.out.println("Wir bieten folgende Konzertarten an:\n -Palmen aus Plastik 2 (RAF CAMORA x BONEZ MC)\n -WAVE (Ufo 361)\n\n");
+	}
 }
 
 abstract class Sport extends Tickets
@@ -44,8 +85,7 @@ abstract class Theater extends Tickets
 class PaP2 extends Konzert
 {
 	int Ticketpreis;
-	@Override
-	void berechneTicketpreis(String Veranstaltungsort, int Basispreis, String Ticketart) 
+	public class berechneTicketpreis(String Veranstaltungsort, int Basispreis, String Ticketart) 
 	{
 		if(Ticketart.equals("Stehplatz"))
 		{
